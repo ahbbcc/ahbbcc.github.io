@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ahbbcc.github.io/"/>
-  <updated>2019-04-04T06:42:41.130Z</updated>
+  <updated>2019-04-04T06:51:58.466Z</updated>
   <id>https://ahbbcc.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React Native 状态监听</title>
+    <link href="https://ahbbcc.github.io/2019/04/04/React-Native-%E7%8A%B6%E6%80%81%E7%9B%91%E5%90%AC/"/>
+    <id>https://ahbbcc.github.io/2019/04/04/React-Native-状态监听/</id>
+    <published>2019-04-04T06:46:36.000Z</published>
+    <updated>2019-04-04T06:51:58.466Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="React-Native-状态监听"><a href="#React-Native-状态监听" class="headerlink" title="React Native 状态监听"></a>React Native 状态监听</h1><h2 id="1-AppState"><a href="#1-AppState" class="headerlink" title="1 AppState"></a>1 AppState</h2><p>Appstate是RN提供的用于获取和监听APP状态的组件，共有三种状态：</p><ol><li><p>active - 应用正在前台运行</p></li><li><p>background - 应用正在后台运行。用户可能面对以下几种情况：</p><ul><li><p>在别的应用中</p></li><li><p>停留在桌面</p></li><li><p>对 Android 来说还可能处在另一个Activity中（即便是由你的应用拉起的）</p></li></ul></li><li><p>inactive - 此状态表示应用正在前后台的切换过程中，或是处在系统的多任务视图，又或是处在来电状态中。</p></li></ol><p>一个简单的使用例子：</p><pre><code>import { AppState } from &quot;react-native&quot;;import……;//其他引用class Index extends Component {    constructor(props) {        super(props);        this.state = {            appState: AppState.currentState        };}componentDidMount() {//在页面初始化时addListener    AppState.addEventListener(&quot;change&quot;, this._handleAppStateChange);}componentWillUnmount() {//在页面即将销毁时remove    AppState.removeEventListener(&quot;change&quot;, this._handleAppStateChange);    }_handleAppStateChange = (nextAppState) =&gt; {    if (nextAppState === &quot;background&quot;) {//APP即将进入background时完成一些指定任务        this.writeTempDataFile(JSON.stringify(GLOBAL.stateStorage));    }    this.setState({appState: nextAppState});};……//其他代码}export default Index;</code></pre><h2 id="2-页面状态监听"><a href="#2-页面状态监听" class="headerlink" title="2 页面状态监听"></a>2 页面状态监听</h2><p>React-Navigation提供了针对页面的状态监听方法addListener，共有四种：</p><ul><li><strong>willFocus</strong> - the screen will focus</li><li><strong>didFocus</strong> - the screen focused (if there was a transition, the transition completed)</li><li><strong>willBlur</strong> - the screen will be unfocused</li><li><strong>didBlur</strong> - the screen unfocused (if there was a transition, the transition completed)</li></ul><p>可以在页面组件内的某个生命周期的方法中addListener，在不需要时remove，具体代码如：</p><pre><code>const didBlurSubscription = this.props.navigation.addListener(  &apos;didBlur&apos;,  payload =&gt; {     //做需要做的事情    console.debug(&apos;didBlur&apos;, payload);  });// Remove the listener when you are donedidBlurSubscription.remove();</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;React-Native-状态监听&quot;&gt;&lt;a href=&quot;#React-Native-状态监听&quot; class=&quot;headerlink&quot; title=&quot;React Native 状态监听&quot;&gt;&lt;/a&gt;React Native 状态监听&lt;/h1&gt;&lt;h2 id=&quot;1-App
+      
+    
+    </summary>
+    
+      <category term="React Native" scheme="https://ahbbcc.github.io/categories/React-Native/"/>
+    
+    
+      <category term="React Native" scheme="https://ahbbcc.github.io/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>React-Navigation</title>

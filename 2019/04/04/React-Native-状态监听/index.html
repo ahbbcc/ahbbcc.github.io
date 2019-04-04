@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>React Native 状态监听 | CC</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css?v=2.0.3"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js?v=2.0.3"></script><script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=2.0.3"></script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">React Native 状态监听</h1><a id="logo" href="/.">CC</a><p class="description">记录</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">React Native 状态监听</h1><div class="post-meta"><a href="/2019/04/04/React-Native-状态监听/#comments" class="comment-count"></a><p><span class="date">Apr 04, 2019</span><span><a href="/categories/React-Native/" class="category">React Native</a></span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><h1 id="React-Native-状态监听"><a href="#React-Native-状态监听" class="headerlink" title="React Native 状态监听"></a>React Native 状态监听</h1><h2 id="1-AppState"><a href="#1-AppState" class="headerlink" title="1 AppState"></a>1 AppState</h2><p>Appstate是RN提供的用于获取和监听APP状态的组件，共有三种状态：</p>
+<ol>
+<li><p>active - 应用正在前台运行</p>
+</li>
+<li><p>background - 应用正在后台运行。用户可能面对以下几种情况：</p>
+<ul>
+<li><p>在别的应用中</p>
+</li>
+<li><p>停留在桌面</p>
+</li>
+<li><p>对 Android 来说还可能处在另一个Activity中（即便是由你的应用拉起的）</p>
+</li>
+</ul>
+</li>
+<li><p>inactive - 此状态表示应用正在前后台的切换过程中，或是处在系统的多任务视图，又或是处在来电状态中。</p>
+</li>
+</ol>
+<p>一个简单的使用例子：</p>
+<pre><code>import { AppState } from &quot;react-native&quot;;
+import……;//其他引用
+class Index extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            appState: AppState.currentState
+        };
+}
+componentDidMount() {//在页面初始化时addListener
+    AppState.addEventListener(&quot;change&quot;, this._handleAppStateChange);
+}
+componentWillUnmount() {//在页面即将销毁时remove
+    AppState.removeEventListener(&quot;change&quot;, this._handleAppStateChange);
+    }
+_handleAppStateChange = (nextAppState) =&gt; {
+    if (nextAppState === &quot;background&quot;) {//APP即将进入background时完成一些指定任务
+        this.writeTempDataFile(JSON.stringify(GLOBAL.stateStorage));
+    }
+    this.setState({appState: nextAppState});
+};
+……//其他代码
+}
+export default Index;
+</code></pre><h2 id="2-页面状态监听"><a href="#2-页面状态监听" class="headerlink" title="2 页面状态监听"></a>2 页面状态监听</h2><p>React-Navigation提供了针对页面的状态监听方法addListener，共有四种：</p>
+<ul>
+<li><strong>willFocus</strong> - the screen will focus</li>
+<li><strong>didFocus</strong> - the screen focused (if there was a transition, the transition completed)</li>
+<li><strong>willBlur</strong> - the screen will be unfocused</li>
+<li><strong>didBlur</strong> - the screen unfocused (if there was a transition, the transition completed)</li>
+</ul>
+<p>可以在页面组件内的某个生命周期的方法中addListener，在不需要时remove，具体代码如：</p>
+<pre><code>const didBlurSubscription = this.props.navigation.addListener(
+  &apos;didBlur&apos;,
+  payload =&gt; {
+     //做需要做的事情
+    console.debug(&apos;didBlur&apos;, payload);
+  }
+);
+
+// Remove the listener when you are done
+didBlurSubscription.remove();
+</code></pre></div><div class="post-copyright"><blockquote><p>原文作者: CC</p><p>原文链接: <a href="https://ahbbcc.github.io/2019/04/04/React-Native-状态监听/">https://ahbbcc.github.io/2019/04/04/React-Native-状态监听/</a></p><p>版权声明: 转载请注明出处(必须保留作者署名及链接)</p></blockquote></div><div class="tags"><a href="/tags/React-Native/">React Native</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2019/04/04/React-Navigation/" class="next">React-Navigation</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#React-Native-状态监听"><span class="toc-text">React Native 状态监听</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-AppState"><span class="toc-text">1 AppState</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-页面状态监听"><span class="toc-text">2 页面状态监听</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/04/React-Native-状态监听/">React Native 状态监听</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/04/React-Navigation/">React-Navigation</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/04/React-Native-引用其他包/">React Native 引用其他包</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/04/使用Hexo快速构建Blog/">使用Hexo快速构建Blog</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/04/React-Native-初入门/">React Native 初入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/hello-world/">Hello World</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React-Native/">React Native</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/React-Native/" style="font-size: 15px;">React Native</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |<a href="/atom.xml">订阅本站</a> |<a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/." rel="nofollow">CC.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script></body></html>
