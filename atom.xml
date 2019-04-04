@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ahbbcc.github.io/"/>
-  <updated>2019-04-04T01:02:44.390Z</updated>
+  <updated>2019-04-04T02:24:18.819Z</updated>
   <id>https://ahbbcc.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Hexo快速构建Blog</title>
+    <link href="https://ahbbcc.github.io/2019/04/04/%E4%BD%BF%E7%94%A8Hexo%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BABlog/"/>
+    <id>https://ahbbcc.github.io/2019/04/04/使用Hexo快速构建Blog/</id>
+    <published>2019-04-04T02:23:32.000Z</published>
+    <updated>2019-04-04T02:24:18.819Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="使用Hexo快速构建Blog"><a href="#使用Hexo快速构建Blog" class="headerlink" title="使用Hexo快速构建Blog"></a>使用Hexo快速构建Blog</h1><h2 id="什么是Hexo"><a href="#什么是Hexo" class="headerlink" title="什么是Hexo"></a>什么是Hexo</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p><a href="http://nodejs.org/" target="_blank" rel="noopener">Node.js</a><br><a href="http://git-scm.com/" target="_blank" rel="noopener">Git</a></p><p>确认电脑中已经安装上述必备程序，然后：</p><p><code>npm install -g hexo-cli</code></p><h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p><p><code>hexo init &lt;folder&gt;</code></p><p><code>cd &lt;folder&gt;</code></p><p><code>npm install</code></p><p>新建完成后，指定文件夹的目录如下：</p><pre><code>.├── _config.yml├── package.json├── scaffolds├── source|   ├── _drafts|   └── _posts└── themes</code></pre><p><strong>_config.yml</strong></p><p>网站的配置信息，可以在此配置大部分的参数。</p><h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p>在<strong>_config.yml</strong> 中配置项分为以下几组：</p><p><strong><em># site</em></strong></p><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>title</td><td>网站标题</td></tr><tr><td>subtitle</td><td>网站副标题</td></tr><tr><td>description</td><td>网站描述</td></tr><tr><td>author</td><td>您的名字</td></tr><tr><td>language</td><td>网站使用的语言，建议设置为 zh-CN</td></tr><tr><td>timezone</td><td>网站时区。Hexo 默认使用您电脑的时区。时区列表。比如说：America/New_York, Japan, 和 UTC 。</td></tr></tbody></table><p>其中，description主要用于SEO，告诉搜索引擎一个关于您站点的简单描述，通常建议在其中包含您网站的关键词。author参数用于主题显示文章的作者。</p><p><strong><em># URL</em></strong></p><table><thead><tr><th>参数</th><th>描述</th><th>默认值</th></tr></thead><tbody><tr><td>url</td><td>网址</td><td>-</td></tr><tr><td>root</td><td>网站根目录</td><td>-</td></tr><tr><td>permalink</td><td>文章的 永久链接 格式</td><td>:year/:month/:day/:title/</td></tr><tr><td>permalink_defaults</td><td>永久链接中各部分的默认值</td><td>-</td></tr></tbody></table><p><strong><em># Directory</em></strong></p><p>此部分暂时可以不用修改初始配置</p><p><strong><em># Writing</em></strong></p><p>此部分暂时可以不用修改初始配置</p><p><strong><em># Category &amp; Tag</em></strong></p><table><thead><tr><th>参数</th><th>描述</th><th>默认值</th></tr></thead><tbody><tr><td>default_category</td><td>默认分类</td><td>uncategorized</td></tr><tr><td>category_map</td><td>分类别名</td><td>-</td></tr><tr><td>tag_map</td><td>标签别名</td><td>-</td></tr></tbody></table><p><strong><em># Date / Time format</em></strong></p><p>此部分暂时可以不用修改初始配置</p><p><strong><em># Pagination</em></strong></p><p>此部分暂时可以不用修改初始配置</p><p><strong><em># Extensions</em></strong></p><p>后续需要修改此部分的配置</p><h2 id="安装配置主题模板"><a href="#安装配置主题模板" class="headerlink" title="安装配置主题模板"></a>安装配置主题模板</h2><p>找到一个功能完备的主题模板：<strong>BlueLake</strong></p><blockquote><p>需要特别注意的是Hexo有两个_config.yml配置文件，一份位于站点根目录下，主要包含 Hexo 站点本身的配置，下文中会称为根_config.yml；另一份位于主题目录下（themes/主题名/_config.yml），这份配置由主题提供，主要用于配置主题相关的选项,下文中会称为主题_config.yml。</p></blockquote><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>在根目录下执行：</p><p><code>git clone https://github.com/chaooo/hexo-theme-BlueLake.git themes/BlueLake</code></p><p>安装依赖包：</p><p><code>npm install hexo-renderer-jade@0.3.0 --save</code></p><p><code>npm install hexo-renderer-stylus --save</code></p><h3 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h3><p>修改 <strong>根_config.yml</strong> 配置文件，找到theme字段，将其值改为 BlueLake</p><h3 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h3><h4 id="1-配置网站头部显示文字"><a href="#1-配置网站头部显示文字" class="headerlink" title="1 配置网站头部显示文字"></a>1 配置网站头部显示文字</h4><p>打开 <strong>根_config.yml</strong> ，找到 <strong><em># site</em></strong> 部分进行配置：</p><blockquote><p>title和subtitle分别是网站主标题和副标题，会显示在网站头部；description在网站界面不会显示，内容会加入网站源码的meta标签中，主要用于SEO；author就填写网站所有者的名字，会在网站底部的Copyright处有所显示。</p></blockquote><h4 id="2-设置语言"><a href="#2-设置语言" class="headerlink" title="2 设置语言"></a>2 设置语言</h4><p>主题目前有七种语言：简体中文（zh-CN），繁体中文（zh-TW），英语（en），法语（fr-FR），德语（de-DE），韩语 （ko）,西班牙语（es-ES）；在 <strong>根_config.yml</strong> 配置language项</p><h4 id="3-设置菜单"><a href="#3-设置菜单" class="headerlink" title="3 设置菜单"></a>3 设置菜单</h4><p>打开 <strong>主题_config.yml</strong> ，找到 <strong><em># Header</em></strong> ：</p><blockquote><p>主题默认是展示四个菜单，即主页home，归档archive，关于about，订阅RSS；about需要手动添加，RSS需要安装插件，若您并不需要，可以直接注释掉。</p></blockquote><p>每个页面底部的footer中联系博主的三个图标分别是邮箱，微博主页链接地址，GitHUb个人页链接地址，直接使用主题_config.yml中about页面的配置，若不需要about页面，只需要如下配置就好：</p><pre><code>about:  email: ## 个人邮箱  weibo_url: ## 微博主页链接地址  github_url: ## github主页链接地址</code></pre><h4 id="4-添加本地搜索"><a href="#4-添加本地搜索" class="headerlink" title="4 添加本地搜索"></a>4 添加本地搜索</h4><p>默认本地搜索是用原生JS写的，但还需要HEXO插件创建的JSON数据文件配合。安装插件hexo-generator-json-content来创建JSON数据文件：</p><p><code>npm install hexo-generator-json-content@2.2.0 --save</code></p><p>然后在 <strong>根_config.yml</strong> 添加配置：</p><pre><code>jsonContent:  meta: false  pages: false  posts:    title: true    date: true    path: true    text: true    raw: false    content: false    slug: false    updated: false    comments: false    link: false    permalink: false    excerpt: false    categories: false    tags: true</code></pre><p>最后在 <strong>主题_config.yml</strong> 添加配置：</p><pre><code>local_search: true</code></pre><h2 id="Hexo主要命令"><a href="#Hexo主要命令" class="headerlink" title="Hexo主要命令"></a>Hexo主要命令</h2><p><strong>new</strong></p><p>新建一篇文章。如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。</p><p><code>hexo new [layout] &lt;title&gt;</code></p><p><strong>generate</strong></p><p>生成静态文件。</p><p><code>hexo g</code></p><p><strong>server</strong></p><p>在本机启动服务预览</p><p><code>hexo s</code></p><h2 id="写blog"><a href="#写blog" class="headerlink" title="写blog"></a>写blog</h2><p>使用 <strong>new</strong> 命令新建一篇：</p><p><code>hexo new [layout] &lt;title&gt;</code></p><p>会自动在 /source/_post/ 目录下生成 title.md，其文件头部内容类似如下：</p><pre><code>---title: React Native 初入门date: 2019-04-04 08:52:22---</code></pre><p>可添加categories和tags属性，如：</p><pre><code>---title: React Native 初入门date: 2019-04-04 08:52:22categories:- React Nativetags:- React Native- JS---</code></pre><p>使用<a href="https://www.mdeditor.com/" target="_blank" rel="noopener">在线Markdown编辑器</a>编写正文，完成编写后整体贴入文件的头部下方，保存、生成静态文件、预览即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;使用Hexo快速构建Blog&quot;&gt;&lt;a href=&quot;#使用Hexo快速构建Blog&quot; class=&quot;headerlink&quot; title=&quot;使用Hexo快速构建Blog&quot;&gt;&lt;/a&gt;使用Hexo快速构建Blog&lt;/h1&gt;&lt;h2 id=&quot;什么是Hexo&quot;&gt;&lt;a href=
+      
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://ahbbcc.github.io/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="https://ahbbcc.github.io/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>React Native 初入门</title>
