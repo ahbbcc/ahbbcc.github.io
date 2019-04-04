@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ahbbcc.github.io/"/>
-  <updated>2019-04-04T02:24:18.819Z</updated>
+  <updated>2019-04-04T05:28:02.182Z</updated>
   <id>https://ahbbcc.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React Native 引用其他包</title>
+    <link href="https://ahbbcc.github.io/2019/04/04/React-Native-%E5%BC%95%E7%94%A8%E5%85%B6%E4%BB%96%E5%8C%85/"/>
+    <id>https://ahbbcc.github.io/2019/04/04/React-Native-引用其他包/</id>
+    <published>2019-04-04T05:25:08.000Z</published>
+    <updated>2019-04-04T05:28:02.182Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="React-Native-引用其他包"><a href="#React-Native-引用其他包" class="headerlink" title="React Native 引用其他包"></a>React Native 引用其他包</h1><p>使用命令：</p><p><code>yarn add包名</code></p><p>对于使用到移动端模块的包，还需要进行自动或者手工的link操作，具体的手工link在相应包的GitHub页面有详细步骤；绝大多数包都可以通过自动link命令完成：</p><p><code>react-native link包名</code></p><p>但存在两类问题：</p><p>1 共同问题，自动link写入android/settings.gradle的链接路径是符合linux系列的路径写法，在windows下开发需手工将所有“\”改为“/”；</p><p>2 个别问题，有些包的自动link完成的不完全，还需手工在android及ios的原生代码部分添加引用和方法调用代码，如后面提到的React-Navigation的手势支持坑。</p><p>完成以上后的第一次运行前会编译相关包，时间可能较长。</p><p>在具体需要引用包的组件代码中使用import…from…引入即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;React-Native-引用其他包&quot;&gt;&lt;a href=&quot;#React-Native-引用其他包&quot; class=&quot;headerlink&quot; title=&quot;React Native 引用其他包&quot;&gt;&lt;/a&gt;React Native 引用其他包&lt;/h1&gt;&lt;p&gt;使用命令：&lt;
+      
+    
+    </summary>
+    
+      <category term="React Native" scheme="https://ahbbcc.github.io/categories/React-Native/"/>
+    
+    
+      <category term="React Native" scheme="https://ahbbcc.github.io/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Hexo快速构建Blog</title>
