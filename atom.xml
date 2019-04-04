@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ahbbcc.github.io/"/>
-  <updated>2019-04-04T07:01:12.294Z</updated>
+  <updated>2019-04-04T07:06:51.905Z</updated>
   <id>https://ahbbcc.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React Native 后台任务</title>
+    <link href="https://ahbbcc.github.io/2019/04/04/React-Native-%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1/"/>
+    <id>https://ahbbcc.github.io/2019/04/04/React-Native-后台任务/</id>
+    <published>2019-04-04T07:04:52.000Z</published>
+    <updated>2019-04-04T07:06:51.905Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="React-Native-后台任务"><a href="#React-Native-后台任务" class="headerlink" title="React Native 后台任务"></a>React Native 后台任务</h1><p>发现由来：需要在应用处于background或者手机锁屏或both时也能记录轨迹</p><p>坑的深度：3天！！！</p><p>React-Native本身不支持，寻觅测试了如下第三方包：</p><p>react-native-background-job: 确实可以加后台执行，但最高执行频率为15分钟</p><p>react-native-background-task: 确实可以加后台执行，但最高执行频率为15分钟</p><p>发现使用的react-native-amap3d（高德Android API的RN封装版）有后台定位功能且能设置间隔时间，但测试发现，确实可以定时调用GPS模块，但无法将定位结果写入程序记录下来</p><p>发现有一个基于GOOGLE地图API写的RN包，react-native-background-geolocation被认定完美支持后台定位，但国内没法用</p><p>发现EXPO这个在RN之上封装的开发架构的最新版提供完美的后台定位功能（是作为亮点在Github、StackOverflow上被提起和讨论了很久），一度打算将代码迁移至此架构上重写，但因为需要重新学习且此架构只能在MAC下开发未下定决心迁移</p><p>最后某天夜里无意中搜到一篇对RN后台任务解决方案的综述文章，提到了一个很简单的后台定时器的包react-native-background-timer几乎完美的在两个系统中均能运行，经测试，确实可用。</p><p>应用举例：</p><pre><code>import BackgroundTimer from &apos;react-native-background-timer&apos;;// Start a timer that runs continuous after X millisecondsconst intervalId = BackgroundTimer.setInterval(() =&gt; {    // this will be executed every 200 ms    // even when app is the the background    console.log(&apos;tic&apos;);}, 200);// Cancel the timer when you are done with itBackgroundTimer.clearInterval(intervalId);// Start a timer that runs once after X millisecondsconst timeoutId = BackgroundTimer.setTimeout(() =&gt; {    // this will be executed once after 10 seconds    // even when app is the the background    console.log(&apos;tac&apos;);}, 10000);// Cancel the timeout if necessaryBackgroundTimer.clearTimeout(timeoutId);</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;React-Native-后台任务&quot;&gt;&lt;a href=&quot;#React-Native-后台任务&quot; class=&quot;headerlink&quot; title=&quot;React Native 后台任务&quot;&gt;&lt;/a&gt;React Native 后台任务&lt;/h1&gt;&lt;p&gt;发现由来：需要在应用
+      
+    
+    </summary>
+    
+      <category term="React Native" scheme="https://ahbbcc.github.io/categories/React-Native/"/>
+    
+    
+      <category term="React Native" scheme="https://ahbbcc.github.io/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>React-Navigation手势支持</title>
