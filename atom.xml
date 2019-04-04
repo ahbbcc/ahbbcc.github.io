@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ahbbcc.github.io/"/>
-  <updated>2019-04-04T06:51:58.466Z</updated>
+  <updated>2019-04-04T07:01:12.294Z</updated>
   <id>https://ahbbcc.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React-Navigation手势支持</title>
+    <link href="https://ahbbcc.github.io/2019/04/04/React-Navigation%E6%89%8B%E5%8A%BF%E6%94%AF%E6%8C%81/"/>
+    <id>https://ahbbcc.github.io/2019/04/04/React-Navigation手势支持/</id>
+    <published>2019-04-04T06:59:40.000Z</published>
+    <updated>2019-04-04T07:01:12.294Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="React-Navigation-手势支持"><a href="#React-Navigation-手势支持" class="headerlink" title="React-Navigation 手势支持"></a>React-Navigation 手势支持</h1><p>发现由来：需要给sidebar的显示和消失增加手势事件，没有响应，文档说默认配置Drawer和sidebar即可，但无论模拟器还是真机均不行；</p><p>坑的深度：约半天；</p><p>官方网站、Github的issues中均没有提及，后在StackOverflow中一个类似问题的回复中找到，如下：</p><blockquote><p>React Navigation depends on the react-native-gesture-handler library. In the Installation section of React Navigation docs, it only says to create link by using the command react-native link. This is enough for iOS. But for Android, you have to edit the <strong>MainActivity.java</strong> file, so that the gesture handler library can work as expected</p></blockquote><pre><code>import com.facebook.react.ReactActivity;+ import com.facebook.react.ReactActivityDelegate;+ import com.facebook.react.ReactRootView;+ import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;public class MainActivity extends ReactActivity {  @Override  protected String getMainComponentName() {    return &quot;Example&quot;;  }+  @Override+  protected ReactActivityDelegate createReactActivityDelegate() {+    return new ReactActivityDelegate(this, getMainComponentName()) {+      @Override+      protected ReactRootView createRootView() {+       return new RNGestureHandlerEnabledRootView(MainActivity.this);+      }+    };+  }}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;React-Navigation-手势支持&quot;&gt;&lt;a href=&quot;#React-Navigation-手势支持&quot; class=&quot;headerlink&quot; title=&quot;React-Navigation 手势支持&quot;&gt;&lt;/a&gt;React-Navigation 手势支持&lt;/
+      
+    
+    </summary>
+    
+      <category term="React Native" scheme="https://ahbbcc.github.io/categories/React-Native/"/>
+    
+    
+      <category term="React Native" scheme="https://ahbbcc.github.io/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>React Native 状态监听</title>
