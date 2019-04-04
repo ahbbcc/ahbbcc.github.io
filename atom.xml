@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ahbbcc.github.io/"/>
-  <updated>2019-04-04T05:28:02.182Z</updated>
+  <updated>2019-04-04T06:42:41.130Z</updated>
   <id>https://ahbbcc.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React-Navigation</title>
+    <link href="https://ahbbcc.github.io/2019/04/04/React-Navigation/"/>
+    <id>https://ahbbcc.github.io/2019/04/04/React-Navigation/</id>
+    <published>2019-04-04T06:30:56.000Z</published>
+    <updated>2019-04-04T06:42:41.130Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="React-Navigation"><a href="#React-Navigation" class="headerlink" title="React-Navigation"></a>React-Navigation</h1><p>对于多页面应用，RN官方推荐使用react-navigation管理页面导航。具体可看官方网站。一个简单的结合使用Drawer和Stack的示例代码：</p><pre><code>import React from &quot;react&quot;;import { Root } from &quot;native-base&quot;;import { createDrawerNavigator, createStackNavigator, createAppContainer } from &quot;react-navigation&quot;;import Index from &quot;./screens/index/&quot;;import Login from &quot;./screens/login/&quot;;import Monitor from &quot;./screens/monitor/&quot;;import Gather from &quot;./screens/gather/&quot;;import Slyxdcb from &quot;./screens/slyxdcb/&quot;;import SideBar from &quot;./screens/sidebar&quot;;import Sllbsldcb from &quot;./screens/sllbsldcb&quot;;import Gdydfnldcjlb from &quot;./screens/gdydfnldcjlb&quot;;import Lqpxlyxfdcb from &quot;./screens/lqpxlyxfdcb&quot;;import Zwqlywdcjlb from &quot;./screens/zwqlywdcjlb&quot;;import Hdmfyxfdcb from &quot;./screens/hdmfyxfdcb&quot;;import Datamanage from &quot;./screens/datamanage&quot;;import Xjwdxxb from &quot;./screens/xjwdxxb&quot;;import Trace from &quot;./screens/trace&quot;;import Tracemanage from &quot;./screens/tracemanage&quot;;import Offlinemap from &quot;./screens/offlinemap&quot;;import User from &quot;./screens/user&quot;;import Dataview from &quot;./screens/dataview&quot;;const Drawer = createDrawerNavigator(  {//定义一个Drawer，将所有需要显示在sidebar上进行直接导航的页面加入      Index: { screen: Index },      Login: { screen: Login },      Monitor: { screen: Monitor },      Gather: { screen: Gather },      Slyxdcb: { screen: Slyxdcb },      Sllbsldcb: { screen: Sllbsldcb },      Gdydfnldcjlb : { screen: Gdydfnldcjlb},      Lqpxlyxfdcb : { screen: Lqpxlyxfdcb },      Zwqlywdcjlb : { screen: Zwqlywdcjlb},      Hdmfyxfdcb : { screen: Hdmfyxfdcb },      Datamanage : { screen: Datamanage },      Xjwdxxb : { screen: Xjwdxxb },      Tracemanage: { screen: Tracemanage},      Trace : { screen: Trace },      Offlinemap : { screen: Offlinemap },      User : { screen: User },  },  {    initialRouteName: &quot;Index&quot;,//Drawer的初始页面    contentOptions: {      activeTintColor: &quot;#e91e63&quot;    },    contentComponent: props =&gt; &lt;SideBar {...props} /&gt;//侧边导航组件引用  });const AppNavigator = createStackNavigator(//定义一个Stack导航器，将Drawer和其他不需要在sidebar中直接进入的页面加入，此类页面均为从Drawer中页面链接进入  {    Drawer: { screen: Drawer },    Dataview : { screen: Dataview }  },  {    initialRouteName: &quot;Drawer&quot;,//设置Stack的初始组件    headerMode: &quot;none&quot;  });const AppContainer = createAppContainer(AppNavigator);export default () =&gt;  &lt;Root&gt;    &lt;AppContainer /&gt;  &lt;/Root&gt;;</code></pre><p>页面间跳转：</p><pre><code>this.props.navigation.navigate(“RouteName”)</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;React-Navigation&quot;&gt;&lt;a href=&quot;#React-Navigation&quot; class=&quot;headerlink&quot; title=&quot;React-Navigation&quot;&gt;&lt;/a&gt;React-Navigation&lt;/h1&gt;&lt;p&gt;对于多页面应用，RN官方推荐
+      
+    
+    </summary>
+    
+      <category term="React Native" scheme="https://ahbbcc.github.io/categories/React-Native/"/>
+    
+    
+      <category term="React Native" scheme="https://ahbbcc.github.io/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>React Native 引用其他包</title>
